@@ -34,6 +34,8 @@ extension WorldClockViewController: UITableViewDataSource {
         
         let target = list[indexPath.row]
         cell.timeLabel.text = target.currentTime
+        cell.timePeriodLabel.text = target.timePeriod
+        cell.timeZoneLabel.text = target.city
         
         return cell
     }

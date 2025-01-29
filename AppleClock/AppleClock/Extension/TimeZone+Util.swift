@@ -25,7 +25,13 @@ extension TimeZone {
     }
     
     var city: String? {
-       // Asia/Seoul
-    
+        // Asia/Seoul
+        let id = identifier
+        let city = id.components(separatedBy: "/").last
+        return city
     }
+    
+//    var timeOffset: String? {
+//        secondsFromGMT()
+//    }
 }
