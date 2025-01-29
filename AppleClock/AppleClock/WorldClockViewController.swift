@@ -32,6 +32,9 @@ extension WorldClockViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WorldClockTableViewCell.self), for: indexPath) as! WorldClockTableViewCell
         
+        let target = list[indexPath.row]
+        cell.timeLabel.text = target.currentTime
+        
         return cell
     }
     
