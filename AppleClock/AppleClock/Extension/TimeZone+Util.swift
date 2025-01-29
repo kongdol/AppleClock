@@ -33,6 +33,8 @@ extension TimeZone {
     
     var timeOffset: String? {
         let offset = secondsFromGMT()-TimeZone.current.secondsFromGMT()
+        let prefix = offset >= 0 ? "+" : ""
+        
         let comp = DateComponents(second: offset)
         
         if offset.isMultiple(of: 3600){
@@ -50,11 +52,11 @@ extension TimeZone {
         
         let cal = Calendar.current
         if cal.isDateInToday(time){
-            return"오늘, \(offsetStr)"
+            return"오늘, \(prefix)\(offsetStr)"
         } else if cal.isDateInYesterday(time){
-            return "어제, \(offsetStr)"
+            return "어제, \(prefix)\(offsetStr)"
         } else if cal.isDateInTomorrow(time){
-            return "내일, \(offsetStr)"
+            return "내일, \(prefix)\(offsetStr)"
         } else {
             return nil
 
