@@ -1,4 +1,4 @@
 # AppleClock
 <p align = "center>
-<img width = "70%" alt = "애플시계앱클론" src = "https://github.com/user-attachments/assets/f27bab79-55c0-494d-963a-1427c05008a0">
+<img width = "70%" alt = "애플시계앱클론" src = ![Image](https://github.com/user-attachments/assets/87a91e5e-6cb8-44e9-9d89-24093d2a19fb)>
 </p>
