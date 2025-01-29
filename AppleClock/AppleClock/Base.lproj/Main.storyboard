@@ -16,8 +16,82 @@
                     <view key="view" contentMode="scaleToFill" id="UUL-Jt-1uG">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="A5W-uk-ju8">
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorldClockTableViewCell" rowHeight="178" id="4hn-KU-rFw" customClass="WorldClockTableViewCell" customModule="AppleClock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="178"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4hn-KU-rFw" id="749-aS-szT">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="178"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haW-2d-eG8">
+                                                    <rect key="frame" x="252" y="53.333333333333336" width="121" height="71.666666666666657"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="60"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xf4-14-RCX">
+                                                    <rect key="frame" x="185" y="78" width="59" height="40.666666666666657"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="VUw-F7-UAq">
+                                                    <rect key="frame" x="20" y="69" width="84" height="46.666666666666657"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘 +0시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGD-dt-lXw">
+                                                            <rect key="frame" x="0.0" y="0.0" width="84" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서울" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gp2-3C-saN">
+                                                            <rect key="frame" x="0.0" y="20.333333333333329" width="38.333333333333336" height="26.333333333333329"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="haW-2d-eG8" firstAttribute="centerY" secondItem="749-aS-szT" secondAttribute="centerY" id="Alf-Pn-5du"/>
+                                                <constraint firstItem="xf4-14-RCX" firstAttribute="baseline" secondItem="haW-2d-eG8" secondAttribute="baseline" id="P3n-0V-T79"/>
+                                                <constraint firstItem="VUw-F7-UAq" firstAttribute="leading" secondItem="749-aS-szT" secondAttribute="leadingMargin" id="XiY-o7-NA5"/>
+                                                <constraint firstItem="gp2-3C-saN" firstAttribute="baseline" secondItem="xf4-14-RCX" secondAttribute="baseline" id="Zrw-0l-YmM"/>
+                                                <constraint firstItem="haW-2d-eG8" firstAttribute="leading" secondItem="xf4-14-RCX" secondAttribute="trailing" constant="8" symbolic="YES" id="eKF-L6-yHt"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="haW-2d-eG8" secondAttribute="bottom" id="fwo-pF-5Ib"/>
+                                                <constraint firstItem="xf4-14-RCX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VUw-F7-UAq" secondAttribute="trailing" constant="10" id="jeh-c1-2xE"/>
+                                                <constraint firstItem="haW-2d-eG8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="749-aS-szT" secondAttribute="topMargin" id="wzB-i7-aLt"/>
+                                                <constraint firstItem="haW-2d-eG8" firstAttribute="trailing" secondItem="749-aS-szT" secondAttribute="trailingMargin" id="xa9-ZD-Pnr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="timeLabel" destination="haW-2d-eG8" id="YQO-PT-AxF"/>
+                                            <outlet property="timeOffsetLabel" destination="IGD-dt-lXw" id="TLm-CB-zev"/>
+                                            <outlet property="timePeriodLabel" destination="xf4-14-RCX" id="oDy-Lm-RR4"/>
+                                            <outlet property="timeZoneLabel" destination="gp2-3C-saN" id="3Hu-sZ-mIO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="eyP-dg-vaK" id="9Bq-J1-vLc"/>
+                                    <outlet property="delegate" destination="eyP-dg-vaK" id="BNf-Wo-c6G"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="EKg-KO-jp1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="A5W-uk-ju8" firstAttribute="leading" secondItem="EKg-KO-jp1" secondAttribute="leading" id="0Iv-Eh-u0Z"/>
+                            <constraint firstItem="A5W-uk-ju8" firstAttribute="trailing" secondItem="EKg-KO-jp1" secondAttribute="trailing" id="OPq-n1-hJe"/>
+                            <constraint firstAttribute="bottom" secondItem="A5W-uk-ju8" secondAttribute="bottom" id="eoE-ma-vyP"/>
+                            <constraint firstItem="A5W-uk-ju8" firstAttribute="top" secondItem="EKg-KO-jp1" secondAttribute="top" id="lzN-ou-ycS"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="세계 시계" id="6BC-5e-81f">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="rIJ-Xt-VMc">
@@ -27,6 +101,9 @@
                             <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="worldClockTableView" destination="A5W-uk-ju8" id="p84-Sv-Fqh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3x-gG-eUf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -73,6 +150,9 @@
     <color key="tintColor" systemColor="systemOrangeColor"/>
     <resources>
         <image name="globe" catalog="system" width="128" height="123"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
