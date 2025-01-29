@@ -13,7 +13,9 @@ class WorldClockViewController: UIViewController {
     
     var list = [
         TimeZone(identifier: "Asia/Seoul")!,
-        TimeZone(identifier: "Europe/Paris")!
+        TimeZone(identifier: "Europe/Paris")!,
+        TimeZone(identifier: "America/New_York")!,
+        TimeZone(identifier: "Asia/Tehran")!
     ]
     
     override func viewDidLoad() {
@@ -36,6 +38,7 @@ extension WorldClockViewController: UITableViewDataSource {
         cell.timeLabel.text = target.currentTime
         cell.timePeriodLabel.text = target.timePeriod
         cell.timeZoneLabel.text = target.city
+        cell.timeOffsetLabel.text = target.timeOffset
         
         return cell
     }

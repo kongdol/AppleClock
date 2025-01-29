@@ -8,7 +8,7 @@
 import Foundation
 
 fileprivate let formatter = DateFormatter()
-
+fileprivate let offsetFormatter = DateComponentsFormatter()
 extension TimeZone {
     var currentTime: String? {
         formatter.timeZone = self
@@ -31,7 +31,33 @@ extension TimeZone {
         return city
     }
     
-//    var timeOffset: String? {
-//        secondsFromGMT()
-//    }
+    var timeOffset: String? {
+        let offset = secondsFromGMT()-TimeZone.current.secondsFromGMT()
+        let comp = DateComponents(second: offset)
+        
+        if offset.isMultiple(of: 3600){
+            offsetFormatter.allowedUnits = [.hour]
+            offsetFormatter.unitsStyle = .full
+        } else {
+            offsetFormatter.allowedUnits = [.hour, .minute]
+            offsetFormatter.unitsStyle = .positional
+        }
+        
+        let offsetStr = offsetFormatter.string(from: comp) ?? "\(offset/3600)시간"
+         
+        
+        let time = Date(timeIntervalSinceNow: TimeInterval(offset))
+        
+        let cal = Calendar.current
+        if cal.isDateInToday(time){
+            return"오늘, \(offsetStr)"
+        } else if cal.isDateInYesterday(time){
+            return "어제, \(offsetStr)"
+        } else if cal.isDateInTomorrow(time){
+            return "내일, \(offsetStr)"
+        } else {
+            return nil
+
+        }
+    }
 }
