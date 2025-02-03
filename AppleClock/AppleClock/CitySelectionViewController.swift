@@ -74,7 +74,12 @@ extension CitySelectionViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath)
+        
+        let target = list[indexPath.section].itmes[indexPath.row]
+        cell.textLabel?.text = target.title
+        
+        return cell
     }
     
     
