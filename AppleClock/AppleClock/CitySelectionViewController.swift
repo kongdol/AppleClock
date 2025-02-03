@@ -82,5 +82,26 @@ extension CitySelectionViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return list[section].title
+    }
+    
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        let characters: [String] = [
+            // 한글 초성 (쌍자음 제외)
+            "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ",
+            
+            // 알파벳 대문자
+            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+            "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+        ]
+
+        return characters
+    }
+    
+    // 오른쪽 인덱스 드래그 할때마다 호출
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        return list.firstIndex(where: {$0.title.uppercased()==title.uppercased()}) ?? 0
+    }
     
 }

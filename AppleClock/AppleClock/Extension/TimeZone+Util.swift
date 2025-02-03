@@ -28,7 +28,7 @@ extension TimeZone {
         // Asia/Seoul
         let id = identifier
         let city = id.components(separatedBy: "/").last
-        return city
+        return city?.replacingOccurrences(of: "_", with: " ")
     }
     
     var timeOffset: String? {
