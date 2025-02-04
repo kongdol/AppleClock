@@ -27,6 +27,10 @@ class WorldClockViewController: UIViewController {
                 return
             }
             
+            guard !self.list.contains(where: {$0.identifier == timeZone.identifier}) else {
+                return
+            }
+            
             self.list.append(timeZone)
             self.worldClockTableView.reloadData()
         }
