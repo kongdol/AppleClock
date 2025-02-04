@@ -120,6 +120,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발견된 결과 없음" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jof-Zh-T4O">
+                                <rect key="frame" x="140.66666666666666" y="410.66666666666669" width="112" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6JX-X0-ae6">
                                 <rect key="frame" x="0.0" y="90" width="393" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -152,9 +158,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6JX-X0-ae6" firstAttribute="top" secondItem="6L2-kj-ESW" secondAttribute="top" id="19s-xK-ycu"/>
+                            <constraint firstItem="jof-Zh-T4O" firstAttribute="centerY" secondItem="63G-LP-c1Z" secondAttribute="centerY" id="FTQ-ej-cX0"/>
                             <constraint firstItem="6L2-kj-ESW" firstAttribute="bottom" secondItem="6JX-X0-ae6" secondAttribute="bottom" id="IjF-UP-NmM"/>
                             <constraint firstItem="6JX-X0-ae6" firstAttribute="leading" secondItem="6L2-kj-ESW" secondAttribute="leading" id="KYt-Er-Llo"/>
                             <constraint firstItem="6JX-X0-ae6" firstAttribute="trailing" secondItem="6L2-kj-ESW" secondAttribute="trailing" id="uu4-v9-sEW"/>
+                            <constraint firstItem="jof-Zh-T4O" firstAttribute="centerX" secondItem="63G-LP-c1Z" secondAttribute="centerX" id="wtc-IU-gl4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" prompt="도시추가" id="kIV-g3-OSk"/>
