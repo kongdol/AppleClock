@@ -14,7 +14,7 @@ struct Item {
 
 struct Section {
     let title: String
-    let itmes: [Item]
+    let items: [Item]
 }
 
 class CitySelectionViewController: UIViewController {
@@ -49,7 +49,7 @@ class CitySelectionViewController: UIViewController {
                 Item(title: $0.city ?? $0.identifier, timeZone: $0)
             }
             
-            let section = Section(title: key, itmes: items)
+            let section = Section(title: key, items: items)
             list.append(section)
         }
         
@@ -103,11 +103,11 @@ extension CitySelectionViewController: UISearchBarDelegate {
         filteredList.removeAll()
         
         for section in list {
-            let items = section.itmes.filter{$0.title.lowercased().contains(searchText.lowercased())}
+            let items = section.items.filter{$0.title.lowercased().contains(searchText.lowercased())}
             
             // 일치하는 데이터가 있으면
             if !items.isEmpty {
-                filteredList.append(Section(title: section.title, itmes: items))
+                filteredList.append(Section(title: section.title, items: items))
             }
         }
         cityTableView.reloadData()
@@ -121,13 +121,13 @@ extension CitySelectionViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredList[section].itmes.count
+        return filteredList[section].items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath)
         
-        let target = filteredList[indexPath.section].itmes[indexPath.row]
+        let target = filteredList[indexPath.section].items[indexPath.row]
         cell.textLabel?.text = target.title
         
         return cell
@@ -155,4 +155,18 @@ extension CitySelectionViewController: UITableViewDataSource {
         return filteredList.firstIndex(where: {$0.title.uppercased()==title.uppercased()}) ?? 0
     }
     
+}
+
+extension CitySelectionViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let target = filteredList[indexPath.section].items[indexPath.row]
+        
+        NotificationCenter.default.post(name: .timeZoneDidSelect, object: nil, userInfo: ["timeZone": target.timeZone])
+        
+        dismiss(animated: true)
+    }
+}
+
+extension Notification.Name {
+    static let timeZoneDidSelect = Notification.Name(rawValue: "timeZoneDidSelect")
 }
