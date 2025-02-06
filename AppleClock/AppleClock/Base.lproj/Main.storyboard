@@ -28,18 +28,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="178"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haW-2d-eG8">
-                                                    <rect key="frame" x="252" y="53.333333333333336" width="121" height="71.666666666666657"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="60"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xf4-14-RCX">
-                                                    <rect key="frame" x="185" y="78" width="59" height="40.666666666666657"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="VUw-F7-UAq">
                                                     <rect key="frame" x="20" y="69" width="84" height="46.666666666666657"/>
                                                     <subviews>
@@ -57,6 +45,18 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haW-2d-eG8">
+                                                    <rect key="frame" x="252" y="53.333333333333336" width="121" height="71.666666666666657"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="60"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xf4-14-RCX">
+                                                    <rect key="frame" x="185" y="78" width="59" height="40.666666666666657"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="haW-2d-eG8" firstAttribute="centerY" secondItem="749-aS-szT" secondAttribute="centerY" id="Alf-Pn-5du"/>
@@ -71,7 +71,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="spacingConstraint" destination="jeh-c1-2xE" id="o6y-2A-MIM"/>
                                             <outlet property="timeLabel" destination="haW-2d-eG8" id="YQO-PT-AxF"/>
+                                            <outlet property="timeLabelTrailingConstraint" destination="xa9-ZD-Pnr" id="sTF-YG-O0I"/>
                                             <outlet property="timeOffsetLabel" destination="IGD-dt-lXw" id="TLm-CB-zev"/>
                                             <outlet property="timePeriodLabel" destination="xf4-14-RCX" id="oDy-Lm-RR4"/>
                                             <outlet property="timeZoneLabel" destination="gp2-3C-saN" id="3Hu-sZ-mIO"/>
@@ -94,9 +96,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="세계 시계" id="6BC-5e-81f">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="rIJ-Xt-VMc">
-                            <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NIh-A2-dkw">
                             <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
