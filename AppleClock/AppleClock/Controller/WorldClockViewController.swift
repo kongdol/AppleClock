@@ -71,5 +71,11 @@ extension WorldClockViewController: UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
+    // 두번째 파라미터-시작위치, 3번째 파라미터-이동할 위치
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let target = list.remove(at: sourceIndexPath.row)
+        
+        list.insert(target, at: destinationIndexPath.row)
+    }
     
 }
