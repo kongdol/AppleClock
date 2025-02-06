@@ -11,6 +11,8 @@ class WorldClockViewController: UIViewController {
 
     @IBOutlet weak var worldClockTableView: UITableView!
     
+    var timer: Timer?
+    
     var list = [
         TimeZone(identifier: "Asia/Seoul")!,
         TimeZone(identifier: "Europe/Paris")!,
@@ -42,6 +44,36 @@ class WorldClockViewController: UIViewController {
             self.list.append(timeZone)
             self.worldClockTableView.reloadData()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
+            // 분이 바뀌지 않았으면 return
+            guard Date.now.minuteChanged, let self else { return }
+            
+            // 분이 바뀌었으면 아래코드
+            for cell in self.worldClockTableView.visibleCells {
+                guard let clockCell = cell as? WorldClockTableViewCell else { continue }
+                guard let indexPath = self.worldClockTableView.indexPath(for: cell) else { continue }
+                
+                let target = list[indexPath.row]
+                clockCell.timeLabel.text = target.currentTime
+                clockCell.timePeriodLabel.text = " \(target.timePeriod ?? "")"
+                clockCell.timeOffsetLabel.text = target.timeOffset
+            }
+            
+            
+        })
+    }
+    
+    // 타이머중지
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        timer?.invalidate()
+        timer = nil
     }
     
 
