@@ -53,6 +53,16 @@ class DataManager {
     }
     
     func insertClock(timeZoneId: String){
+        let request = WorldClockEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(WorldClockEntity.timeZoneId), timeZoneId)
+        
+        do {
+            let cnt = try mainContext.count(for: request)
+            if cnt > 0 { return }
+        } catch {
+            print(error)
+        }
+        
         let order = worldClockFetchedResults.sections?.first?.numberOfObjects ?? 0
         
         let newClock = WorldClockEntity(context: mainContext)
