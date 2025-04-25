@@ -12,7 +12,11 @@ class AlarmViewController: UIViewController {
     @IBAction func addAlarm(_ sender: Any) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
-                print("허가")
+                if granted {
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "addSegue", sender: nil)
+                    }
+                }
             } else {
                 DispatchQueue.main.async {
                     self.showNotificationAlert()
