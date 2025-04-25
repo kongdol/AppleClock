@@ -248,6 +248,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="nS1-d6-qjh" kind="show" id="qgN-28-PJi"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="hfW-X3-5J9" detailTextLabel="VLp-dz-n0u" style="IBUITableViewCellStyleValue1" id="A52-YG-aiz">
                                         <rect key="frame" x="20" y="302.66666793823242" width="353" height="44.666667938232422"/>
@@ -348,6 +351,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iem-i4-9zR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2554.9618320610684" y="160.56338028169014"/>
+        </scene>
+        <!--반복-->
+        <scene sceneID="5AX-G0-bpt">
+            <objects>
+                <viewController id="nS1-d6-qjh" customClass="WeekdaySelectionViewController" customModule="AppleClock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o1k-ye-4I8">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gdA-YR-qdp">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="Mcf-oE-2IV" style="IBUITableViewCellStyleDefault" id="Mf6-2H-BpG">
+                                        <rect key="frame" x="20" y="55.333332061767578" width="353" height="44.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mf6-2H-BpG" id="8yX-Il-MNY">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="44.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mcf-oE-2IV">
+                                                    <rect key="frame" x="20" y="0.0" width="313" height="44.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="nS1-d6-qjh" id="vRF-hm-Obh"/>
+                                    <outlet property="delegate" destination="nS1-d6-qjh" id="iqs-mx-DD1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HHj-TA-jzC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gdA-YR-qdp" firstAttribute="leading" secondItem="HHj-TA-jzC" secondAttribute="leading" id="4A1-69-TLs"/>
+                            <constraint firstItem="gdA-YR-qdp" firstAttribute="top" secondItem="o1k-ye-4I8" secondAttribute="top" id="fHF-z2-H11"/>
+                            <constraint firstItem="gdA-YR-qdp" firstAttribute="trailing" secondItem="HHj-TA-jzC" secondAttribute="trailing" id="fdQ-hJ-tnY"/>
+                            <constraint firstItem="gdA-YR-qdp" firstAttribute="bottom" secondItem="HHj-TA-jzC" secondAttribute="bottom" id="z2y-Bf-jhs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="반복" id="872-MR-uLj"/>
+                    <connections>
+                        <outlet property="weekdayTableView" destination="gdA-YR-qdp" id="fl4-oi-pyA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t11-Dx-GeO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3414.5038167938928" y="160.56338028169014"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GSJ-fp-QKr">
