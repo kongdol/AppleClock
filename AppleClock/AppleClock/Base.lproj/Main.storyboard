@@ -275,6 +275,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="9xd-Hc-pMA" kind="show" id="lbg-k6-SiG"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="57Z-pn-1jg" detailTextLabel="9fs-54-XBl" style="IBUITableViewCellStyleValue1" id="M3c-Ln-bkv">
                                         <rect key="frame" x="20" y="347.33333587646484" width="353" height="44.666667938232422"/>
@@ -405,6 +408,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t11-Dx-GeO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3414.5038167938928" y="160.56338028169014"/>
+        </scene>
+        <!--레이블-->
+        <scene sceneID="hl6-5F-v6L">
+            <objects>
+                <viewController id="9xd-Hc-pMA" customClass="LabelViewController" customModule="AppleClock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gId-pb-H1i">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ssv-tV-VVm">
+                                <rect key="frame" x="20" y="86" width="353" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xF1-VL-Xfq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ssv-tV-VVm" firstAttribute="leading" secondItem="xF1-VL-Xfq" secondAttribute="leading" constant="20" id="KVO-jS-h9e"/>
+                            <constraint firstItem="ssv-tV-VVm" firstAttribute="top" secondItem="xF1-VL-Xfq" secondAttribute="top" constant="30" id="cPZ-pC-7EB"/>
+                            <constraint firstItem="xF1-VL-Xfq" firstAttribute="trailing" secondItem="ssv-tV-VVm" secondAttribute="trailing" constant="20" id="x70-Xt-9qu"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="레이블" id="Ucr-g7-Ygd"/>
+                    <connections>
+                        <outlet property="inputField" destination="ssv-tV-VVm" id="qjm-7P-xOx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O5u-pW-Chw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3415" y="901"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GSJ-fp-QKr">
