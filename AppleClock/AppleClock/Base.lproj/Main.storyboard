@@ -109,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3x-gG-eUf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-417.55725190839695" y="93.661971830985919"/>
+            <point key="canvasLocation" x="-2566" y="127"/>
         </scene>
         <!--City Selection View Controller-->
         <scene sceneID="IcE-8L-NiM">
@@ -171,7 +171,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A46-85-hgv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1319.8473282442746" y="118.30985915492958"/>
+            <point key="canvasLocation" x="-830" y="152"/>
+        </scene>
+        <!--알람-->
+        <scene sceneID="fmC-Oh-tiR">
+            <objects>
+                <viewController id="fej-Kv-IYt" customClass="AlarmViewController" customModule="AppleClock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VNY-da-QBi">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="AKe-Ue-woB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="알람" id="tzP-ym-JQR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oBJ-Ff-rOn">
+                            <connections>
+                                <action selector="addAlarm:" destination="fej-Kv-IYt" id="fF1-CH-lkr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WCx-b2-H7A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="743" y="161"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Du2-XB-tCB">
@@ -185,6 +207,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="aDc-8C-iF9" kind="relationship" relationship="viewControllers" id="6XY-1q-zul"/>
+                        <segue destination="ujF-7u-2fh" kind="relationship" relationship="viewControllers" id="gFr-8U-cG0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ja2-Nq-JH1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -208,7 +231,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3eE-O7-ZZp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1344.2748091603053" y="93.661971830985919"/>
+            <point key="canvasLocation" x="-3492" y="127"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5dU-J5-OJn">
@@ -226,11 +249,31 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xdc-be-9FB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="492" y="118"/>
+            <point key="canvasLocation" x="-1657" y="151"/>
+        </scene>
+        <!--알람-->
+        <scene sceneID="8It-kb-YIQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ujF-7u-2fh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="알람" image="alarm" catalog="system" id="4h7-JX-8gr"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="OO8-ve-RKC">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fej-Kv-IYt" kind="relationship" relationship="rootViewController" id="2mq-h1-LxD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mGk-es-TN9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-25" y="151"/>
         </scene>
     </scenes>
     <color key="tintColor" systemColor="systemOrangeColor"/>
     <resources>
+        <image name="alarm" catalog="system" width="123" height="128"/>
         <image name="globe" catalog="system" width="128" height="123"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
