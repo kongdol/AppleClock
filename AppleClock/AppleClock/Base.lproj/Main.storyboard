@@ -212,6 +212,9 @@
                             <subviews>
                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="6GY-A0-B4L">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="240"/>
+                                    <connections>
+                                        <action selector="selectedTimeChanged:" destination="0q5-lQ-DzS" eventType="valueChanged" id="cA4-ye-2su"/>
+                                    </connections>
                                 </datePicker>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -293,8 +296,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9fs-54-XBl">
-                                                    <rect key="frame" x="271" y="12.999999999999998" width="43.666666666666664" height="20.333333333333332"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="기본" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9fs-54-XBl">
+                                                    <rect key="frame" x="285" y="12.999999999999998" width="29.666666666666668" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -304,20 +307,23 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5zU-Zo-HR2">
-                                        <rect key="frame" x="20" y="392.00000381469727" width="353" height="42.666667938232422"/>
+                                        <rect key="frame" x="20" y="392.00000381469727" width="353" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5zU-Zo-HR2" id="bJq-jr-srQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="42.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다시알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NU6-6z-TlA">
-                                                    <rect key="frame" x="20" y="11.000000000000002" width="254" height="20.666666666666671"/>
+                                                    <rect key="frame" x="20" y="11" width="254" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YDW-ti-5wf">
                                                     <rect key="frame" x="284" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="toggleRepeat:" destination="0q5-lQ-DzS" eventType="valueChanged" id="kvj-dG-oIX"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -350,6 +356,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nameLabel" destination="VLp-dz-n0u" id="ZF0-Py-MD2"/>
+                        <outlet property="repeatSwitch" destination="YDW-ti-5wf" id="WhF-dW-RUp"/>
+                        <outlet property="timePicker" destination="6GY-A0-B4L" id="KJt-G8-xG3"/>
+                        <outlet property="weekdayLabel" destination="jtI-iL-22n" id="AhS-EW-HXX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iem-i4-9zR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

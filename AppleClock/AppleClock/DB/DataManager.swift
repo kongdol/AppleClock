@@ -25,6 +25,7 @@ class DataManager {
         
         persistentContainer = contatiner
         mainContext = persistentContainer.viewContext
+        mainContext.undoManager = UndoManager()
         
         let worldClockRequest = WorldClockEntity.fetchRequest()
         
@@ -50,6 +51,10 @@ class DataManager {
                 print(error)
             }
         }
+    }
+    
+    func rollback() {
+        mainContext.rollback()
     }
     
     func insertClock(timeZoneId: String){
