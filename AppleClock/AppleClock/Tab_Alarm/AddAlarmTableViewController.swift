@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class AddAlarmTableViewController: UITableViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
@@ -57,9 +58,60 @@ class AddAlarmTableViewController: UITableViewController {
     }
     
     @IBAction func saveAlarm(_ sender: Any) {
-        DataManager.shared.save()
-        dismiss(animated: true)
+        selectedTimeChanged(self)
         
+        let content = UNMutableNotificationContent()
+        content.title = "시계"
+        content.body = alarm.name ?? "알람"
+        //content.badge = 123 // 앱아이콘에 표시됨
+        content.sound = UNNotificationSound.default
+        
+        Task {
+            do {
+                // 반복요일 선택했는지
+                if let weekday = alarm.weekday {
+                    // 하나의 트리거 여러 요일 만들기 불가 - 요일마다 트리거 만들어야됨
+                    let weekdayList = weekday.components(separatedBy: ",").compactMap{Int($0)}.map {$0 + 1}
+                    
+                    for w in weekdayList {
+                        var comp = DateComponents()
+                        comp.hour = Int(alarm.hour)
+                        comp.minute = Int(alarm.minute)
+                        comp.weekday = w
+                        // 일요일 1, 월요일 2, 토요일 7
+                        
+                        let trigger = UNCalendarNotificationTrigger(dateMatching: comp, repeats: true)
+                        //print(trigger.nextTriggerDate()?.formatted(date: .abbreviated, time: .standard))
+                        
+                        // 노티예약
+                        let request = UNNotificationRequest(identifier: "\(alarm.identifier ?? "")-\(w)", content: content, trigger: trigger)
+                        
+                        try await UNUserNotificationCenter.current().add(request)
+                    }
+                }
+                else {
+                   // 반복 선택 안했을때
+                   var comp = DateComponents()
+                   comp.hour = Int(alarm.hour)
+                   comp.minute = Int(alarm.minute)
+                   
+                   let trigger = UNCalendarNotificationTrigger(dateMatching: comp, repeats: false)
+                   //print(trigger.nextTriggerDate()?.formatted(date: .abbreviated, time: .standard))
+                   
+                   // 노티예약
+                   let request = UNNotificationRequest(identifier: alarm.identifier ?? "", content: content, trigger: trigger)
+                   
+                   try await UNUserNotificationCenter.current().add(request)
+               }
+                
+                DataManager.shared.save()
+                dismiss(animated: true)
+            } catch {
+                print(error)
+            }
+        }
+        
+         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

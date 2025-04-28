@@ -44,6 +44,12 @@ class AlarmViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        Task {
+            for noti in await UNUserNotificationCenter.current().pendingNotificationRequests() {
+                print(noti.identifier)
+                print((noti.trigger as? UNCalendarNotificationTrigger)?.nextTriggerDate())
+            }
+        }
        
     }
     
