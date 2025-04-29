@@ -18,7 +18,14 @@ class AlarmViewController: UIViewController {
             if granted {
                 if granted {
                     DispatchQueue.main.async {
+                        // 세그웨이 시작하기전에 델리게이트 잠깐 비활성
+                        DataManager.shared.alarmFetchedResults.delegate = nil
                         self.performSegue(withIdentifier: "addSegue", sender: nil)
+                    }
+                    
+                    //새로운화면표시된다음에 델리게이트 다시 활성화
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
+                        DataManager.shared.alarmFetchedResults.delegate = self
                     }
                 }
             } else {
@@ -49,18 +56,14 @@ class AlarmViewController: UIViewController {
         super.viewDidLoad()
 
         DataManager.shared.alarmFetchedResults.delegate = self
-        
-        Task {
-            for noti in await UNUserNotificationCenter.current().pendingNotificationRequests() {
-                print(noti.identifier)
-                print((noti.trigger as? UNCalendarNotificationTrigger)?.nextTriggerDate())
-            }
-        }
-       
+        navigationItem.leftBarButtonItem = editButtonItem
     }
     
-
-
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        alarmTableView.setEditing(editing, animated: animated)
+    }
 }
 
 extension AlarmViewController: UITableViewDataSource {
@@ -91,7 +94,29 @@ extension AlarmViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let obj = DataManager.shared.alarmFetchedResults.object(at: indexPath)
+            
+            if let id = obj.identifier {
+                let idList: [String]
+                
+                if let weekday = obj.weekday {
+                    idList = weekday.components(separatedBy: ",").compactMap{Int($0)}.map{$0 + 1}.map {
+                        "\(id)-\($0)"
+                    }
+                } else {
+                    idList = [id]
+                }
+                
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: idList)
+                UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: idList)
+            }
+            
             DataManager.shared.delete(object: obj)
+            
+            Task {
+                for noti in await UNUserNotificationCenter.current().pendingNotificationRequests() {
+                    print(noti.identifier)
+                }
+            }
         }
     }
 }
