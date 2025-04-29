@@ -14,6 +14,7 @@ class DataManager {
     private let persistentContainer: NSPersistentContainer
     let mainContext: NSManagedObjectContext
     let worldClockFetchedResults: NSFetchedResultsController<WorldClockEntity>
+    let alarmFetchedResults: NSFetchedResultsController<AlarmEntity>
     
     private init() {
         let contatiner = NSPersistentContainer(name: "Clock")
@@ -34,10 +35,17 @@ class DataManager {
         
         worldClockFetchedResults = NSFetchedResultsController(fetchRequest: worldClockRequest, managedObjectContext: mainContext, sectionNameKeyPath: nil, cacheName: nil)
         
+        let alarmRequest = AlarmEntity.fetchRequest()
         
+        let sortByHour = NSSortDescriptor(keyPath: \AlarmEntity.hour, ascending: true)
+        let sortByMinute = NSSortDescriptor(keyPath: \AlarmEntity.minute, ascending: true)
+        alarmRequest.sortDescriptors = [sortByHour, sortByMinute] //시간으로 정렬, 똑같으면 분으로 정렬
+        
+        alarmFetchedResults = NSFetchedResultsController(fetchRequest: alarmRequest, managedObjectContext: mainContext, sectionNameKeyPath: nil, cacheName: nil)
         
         do {
             try worldClockFetchedResults.performFetch()
+            try alarmFetchedResults.performFetch()
         } catch {
             print(error)
         }

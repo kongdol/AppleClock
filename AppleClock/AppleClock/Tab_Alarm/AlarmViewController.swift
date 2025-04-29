@@ -7,8 +7,12 @@
 
 import UIKit
 import UserNotifications
+import CoreData
 
 class AlarmViewController: UIViewController {
+    
+    @IBOutlet weak var alarmTableView: UITableView!
+    
     @IBAction func addAlarm(_ sender: Any) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
@@ -55,4 +59,70 @@ class AlarmViewController: UIViewController {
     
 
 
+}
+
+extension AlarmViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return DataManager.shared.alarmFetchedResults.sections?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let sections = DataManager.shared.alarmFetchedResults.sections else { return 0 }
+        
+        let sectionInfo = sections[section]
+        return sectionInfo.numberOfObjects
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AlarmTableViewCell.self), for: indexPath) as! AlarmTableViewCell
+        
+        let obj = DataManager.shared.alarmFetchedResults.object(at: indexPath)
+        cell.timeLabel.text = obj.hour >= 12 ? "오후" : "오전"
+        cell.timeLabel.text = "\(obj.hour > 12 ? obj.hour - 12 : obj.hour):\(obj.minute.formatted(.number.precision(.integerLength(2))))"
+        cell.nameLabel.text = obj.name
+        cell.activationSwitch.isOn = obj.activated
+        
+        return cell
+    }
+    
+    // 테이블뷰 편집기능
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let obj = DataManager.shared.alarmFetchedResults.object(at: indexPath)
+            DataManager.shared.delete(object: obj)
+        }
+    }
+}
+
+extension AlarmViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
+        alarmTableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+         case .insert:
+            if let insertIndexPath = newIndexPath {
+                alarmTableView.insertRows(at: [insertIndexPath], with: .automatic)
+            }
+        case .delete:
+            if let deleteIndexPath = indexPath {
+                alarmTableView.deleteRows(at: [deleteIndexPath], with: .automatic)
+            }
+        case .move:
+            if let originalIndexPath = indexPath, let targetIndexPath = newIndexPath {
+                alarmTableView.moveRow(at: originalIndexPath, to: targetIndexPath)
+            }
+        case .update:
+            if let updateIndexPath = indexPath {
+                alarmTableView.reloadRows(at: [updateIndexPath], with: .automatic)
+            }
+        default:
+            break
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
+        alarmTableView.endUpdates()
+    }
 }
