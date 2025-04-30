@@ -380,6 +380,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ohL-4m-hU8" kind="show" id="aps-71-OMy"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5zU-Zo-HR2">
                                         <rect key="frame" x="20" y="392.00000381469727" width="353" height="43.333332061767578"/>
@@ -515,7 +518,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t11-Dx-GeO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3414.5038167938928" y="160.56338028169014"/>
+            <point key="canvasLocation" x="3790" y="-185"/>
+        </scene>
+        <!--사운드-->
+        <scene sceneID="joO-kE-KeI">
+            <objects>
+                <viewController id="ohL-4m-hU8" customClass="SoundListViewController" customModule="AppleClock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R0z-WL-fPA">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lfJ-GQ-8nb">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="QQU-2Q-66h" style="IBUITableViewCellStyleDefault" id="5hg-HB-eyj">
+                                        <rect key="frame" x="20" y="55.333332061767578" width="353" height="44.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5hg-HB-eyj" id="Yk0-sC-3OA">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="44.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QQU-2Q-66h">
+                                                    <rect key="frame" x="20" y="0.0" width="313" height="44.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ohL-4m-hU8" id="7cG-6C-U8h"/>
+                                    <outlet property="delegate" destination="ohL-4m-hU8" id="q1I-7F-5jX"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nEi-nK-4yP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lfJ-GQ-8nb" firstAttribute="top" secondItem="R0z-WL-fPA" secondAttribute="top" id="5mF-H9-JAu"/>
+                            <constraint firstItem="lfJ-GQ-8nb" firstAttribute="leading" secondItem="R0z-WL-fPA" secondAttribute="leading" id="7nm-ET-AKT"/>
+                            <constraint firstItem="lfJ-GQ-8nb" firstAttribute="bottom" secondItem="nEi-nK-4yP" secondAttribute="bottom" id="QIo-Jl-0Uh"/>
+                            <constraint firstItem="lfJ-GQ-8nb" firstAttribute="trailing" secondItem="nEi-nK-4yP" secondAttribute="trailing" id="nX8-Tb-O5N"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="사운드" id="tAx-sw-kaW"/>
+                    <connections>
+                        <outlet property="soundTableView" destination="lfJ-GQ-8nb" id="u7t-UZ-1Gh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nIM-zO-AUo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3620.6106870229005" y="564.78873239436621"/>
         </scene>
         <!--레이블-->
         <scene sceneID="hl6-5F-v6L">
@@ -546,7 +603,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O5u-pW-Chw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3415" y="901"/>
+            <point key="canvasLocation" x="4627" y="-185"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GSJ-fp-QKr">

@@ -87,7 +87,7 @@ class AddAlarmTableViewController: UITableViewController {
         content.title = "시계"
         content.body = alarm?.name ?? "알람"
         //content.badge = 123 // 앱아이콘에 표시됨
-        content.sound = UNNotificationSound.default
+        content.sound = UNNotificationSound(named: UNNotificationSoundName("사운드 1.mp3"))
         
         Task {
             do {
