@@ -140,6 +140,15 @@ class AlarmViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editSegue", let cell = sender as? UITableViewCell, let indexPath = alarmTableView.indexPath(for: cell) {
+            if let vc = segue.destination.children.first as? AddAlarmTableViewController {
+                vc.alarm = DataManager.shared.alarmFetchedResults.object(at: indexPath)
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -247,5 +256,11 @@ extension AlarmViewController: NSFetchedResultsControllerDelegate {
     // 컨텍스트를 저장하면 디드체니지 호출되고 테이블뷰 적절하게 업데이트 될거임(델리게이트가 연결되어 있을때)
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
         alarmTableView.endUpdates()
+    }
+}
+
+extension AlarmViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
