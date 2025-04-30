@@ -211,6 +211,9 @@
                                                 </stackView>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i6P-Ej-xqR">
                                                     <rect key="frame" x="324" y="31.333333333333329" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="toggleActivated:" destination="fej-Kv-IYt" eventType="valueChanged" id="K9q-8u-bym"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5GG-A5-Vgw">
                                                     <rect key="frame" x="20" y="76.333333333333329" width="353" height="15.666666666666671"/>

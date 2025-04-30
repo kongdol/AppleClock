@@ -24,8 +24,8 @@ class DataManager {
             }
         }
         
-        persistentContainer = contatiner
-        mainContext = persistentContainer.viewContext
+        persistentContainer = contatiner //DB전체엔진
+        mainContext = persistentContainer.viewContext //작업공간
         mainContext.undoManager = UndoManager()
         
         let worldClockRequest = WorldClockEntity.fetchRequest()
@@ -33,9 +33,10 @@ class DataManager {
         let sortByOrderAsc = NSSortDescriptor(keyPath: \WorldClockEntity.order, ascending: true)
         worldClockRequest.sortDescriptors = [sortByOrderAsc]
         
+        // 자동으로 리스트 관리해주는 컨트롤러
         worldClockFetchedResults = NSFetchedResultsController(fetchRequest: worldClockRequest, managedObjectContext: mainContext, sectionNameKeyPath: nil, cacheName: nil)
         
-        let alarmRequest = AlarmEntity.fetchRequest()
+        let alarmRequest = AlarmEntity.fetchRequest() // 코어데이터에서 데이터 불러옴
         
         let sortByHour = NSSortDescriptor(keyPath: \AlarmEntity.hour, ascending: true)
         let sortByMinute = NSSortDescriptor(keyPath: \AlarmEntity.minute, ascending: true)
@@ -95,4 +96,22 @@ class DataManager {
         save()
     }
     
+    // 패치리퀘스트 만들고 모든 엔티티 가져옴
+    func refreshActivationState(pendingIds: [String]) {
+        let request = AlarmEntity.fetchRequest()
+        
+        do {
+            let list = try mainContext.fetch(request)
+            
+            for alarm in list {
+                if let id = alarm.identifier {
+                    alarm.activated = pendingIds.contains(where: {$0.hasPrefix(id)})
+                }
+            }
+            
+            save()
+        } catch {
+            print(error)
+        }
+    }
 }

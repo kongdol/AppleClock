@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -39,8 +40,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
+        Task {
+            let pendingList = await UNUserNotificationCenter.current().pendingNotificationRequests().map {
+                $0.identifier
+            }
+            
+            // 엔티티에 액티베이트속성 업데이트
+            DataManager.shared.refreshActivationState(pendingIds: pendingList)
+        }
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
