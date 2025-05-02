@@ -10,10 +10,21 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    func setupCategory() {
+        let remindLaterAction = UNNotificationAction(identifier: ActionIdentifier.remindLater.rawValue, title: "다시 알림", icon: UNNotificationActionIcon(systemImageName: "zzz"))
+        
+        let stopAction = UNNotificationAction(identifier: ActionIdentifier.stop.rawValue, title: "중단", icon: UNNotificationActionIcon(systemImageName: "stop.circle"))
+        
+        let alarmCategory = UNNotificationCategory(identifier: CategoryIdentifier.alarm.rawValue, actions: [remindLaterAction, stopAction], intentIdentifiers: [])
+        
+        // 셋으로 전달하면 됨
+        UNUserNotificationCenter.current().setNotificationCategories([alarmCategory])
+    }
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        setupCategory()
         UNUserNotificationCenter.current().delegate = self
         
         return true
@@ -60,12 +71,43 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         // code (리턴안해도됨)
         // print(#function)
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let sceneDelegate = windowScene.delegate as? SceneDelegate,
-           let tabBarController = sceneDelegate.window?.rootViewController as? UITabBarController {
-            tabBarController.selectedIndex = 1
-        }
         
+        
+        switch response.actionIdentifier {
+        case UNNotificationDefaultActionIdentifier :
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let sceneDelegate = windowScene.delegate as? SceneDelegate,
+               let tabBarController = sceneDelegate.window?.rootViewController as? UITabBarController {
+                tabBarController.selectedIndex = 1
+            }
+        case ActionIdentifier.remindLater.rawValue:
+            let content = response.notification.request.content
+            
+            let date = Date(timeIntervalSinceNow: 10)
+            let comp = Calendar.current.dateComponents([.hour, .minute, .second], from: date)
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: comp, repeats: false)
+            
+            var id = response.notification.request.identifier + "-remind"
+            if !id.contains("-remind") {
+                id.append("-remind")
+            }
+            
+            let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+            
+            do {
+                try await UNUserNotificationCenter.current().add(request)
+            } catch {
+                print(error)
+            }
+            
+            // 중단했을때 기능 추가하고싶으면
+        case ActionIdentifier.stop.rawValue:
+            // Code
+            break
+        default:
+            break
+        }
         
     }
 }
