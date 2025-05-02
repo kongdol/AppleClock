@@ -44,6 +44,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     // 자동으로 흐름과 메모리를 관리해주는 방식
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
+        
+        Task {
+            let pendingList = await UNUserNotificationCenter.current().pendingNotificationRequests().map {
+                $0.identifier
+            }
+            
+            // 엔티티에 액티베이트속성 업데이트
+            DataManager.shared.refreshActivationState(pendingIds: pendingList)
+        }
+        
         return [.banner, .sound]
     }
     

@@ -13,6 +13,11 @@ class AddAlarmTableViewController: UITableViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var weekdayLabel: UILabel!
+    
+    
+    @IBOutlet weak var soundLabel: UILabel!
+    
+    
     @IBOutlet weak var repeatSwitch: UISwitch!
     
     @IBAction func toggleRepeat(_ sender: Any) {
@@ -87,7 +92,15 @@ class AddAlarmTableViewController: UITableViewController {
         content.title = "시계"
         content.body = alarm?.name ?? "알람"
         //content.badge = 123 // 앱아이콘에 표시됨
-        content.sound = UNNotificationSound(named: UNNotificationSoundName("사운드 1.mp3"))
+        // content.sound = UNNotificationSound(named: UNNotificationSoundName("사운드 1.mp3"))
+        
+        if let sound = alarm?.sound {
+            if sound == "기본 사운드" {
+                content.sound = UNNotificationSound.default
+            } else {
+                content.sound = UNNotificationSound(named: UNNotificationSoundName("\(sound).mp3"))
+            }
+        }
         
         Task {
             do {
@@ -148,7 +161,10 @@ class AddAlarmTableViewController: UITableViewController {
             vc.entity = alarm
         } else if let vc = segue.destination as? LabelViewController {
             vc.entity = alarm
+        } else if let vc = segue.destination as? SoundListViewController {
+            vc.entity = alarm
         }
+        
     }
     
     override func viewDidLoad() {
@@ -171,6 +187,7 @@ class AddAlarmTableViewController: UITableViewController {
             alarm?.identifier = UUID().uuidString
             selectedTimeChanged(self)
             alarm?.name = "알람"
+            alarm?.sound = "기본 사운드"
             
             navigationItem.title = "알람 추가"
         }
@@ -183,6 +200,7 @@ class AddAlarmTableViewController: UITableViewController {
         
         weekdayLabel.text = weekdayString
         nameLabel.text = alarm?.name
+        soundLabel.text = alarm?.sound ?? "없음"
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

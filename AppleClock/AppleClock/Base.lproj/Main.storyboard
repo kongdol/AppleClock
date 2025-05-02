@@ -458,6 +458,7 @@
                     <connections>
                         <outlet property="nameLabel" destination="VLp-dz-n0u" id="ZF0-Py-MD2"/>
                         <outlet property="repeatSwitch" destination="YDW-ti-5wf" id="WhF-dW-RUp"/>
+                        <outlet property="soundLabel" destination="9fs-54-XBl" id="WEc-kx-kLj"/>
                         <outlet property="timePicker" destination="6GY-A0-B4L" id="KJt-G8-xG3"/>
                         <outlet property="weekdayLabel" destination="jtI-iL-22n" id="AhS-EW-HXX"/>
                     </connections>
@@ -532,7 +533,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="QQU-2Q-66h" style="IBUITableViewCellStyleDefault" id="5hg-HB-eyj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="QQU-2Q-66h" imageView="hiN-Qq-p0w" style="IBUITableViewCellStyleDefault" id="5hg-HB-eyj">
                                         <rect key="frame" x="20" y="55.333332061767578" width="353" height="44.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5hg-HB-eyj" id="Yk0-sC-3OA">
@@ -540,12 +541,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QQU-2Q-66h">
-                                                    <rect key="frame" x="20" y="0.0" width="313" height="44.666667938232422"/>
+                                                    <rect key="frame" x="59" y="0.0" width="274" height="44.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="checkmark" catalog="system" id="hiN-Qq-p0w">
+                                                    <rect key="frame" x="22.833333333333336" y="14.333333333333332" width="18.333333333333332" height="16.333333333333336"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -703,6 +708,7 @@
     <color key="tintColor" systemColor="systemOrangeColor"/>
     <resources>
         <image name="alarm" catalog="system" width="123" height="128"/>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="globe" catalog="system" width="128" height="123"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
